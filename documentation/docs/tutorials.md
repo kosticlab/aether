@@ -11,15 +11,23 @@ If you have not already installed Python, we recommend using [Anaconda](https://
 
 ---
 
-## Setup and Configuration
+## Configuration and Setup
 
 ### Installation
-To install Cumulonimble, run the following in the command line:
+To install Cumulonimble, you first need to acquire a copy of it from [GitHub](https://github.com/kosticlab/cumulonimble).
+To do this, you may either clone the git repository, or download an archive.
+To clone the git repository, run the following in the command line:
 ```sh
     git clone git@github.com:kosticlab/cumulonimble.git
 ```
+Alternatively, you can download an archive of Cumulonimble [here](https://github.com/kosticlab/diabimmune/archive/master.tar.gz).
+To unpack the archive, run the following:
+```sh
+    tar -xvf cumulonimble-master.tar.gz
+    mv cumulonimble-master cumulonimble
+```
 
-Open the directory for Cumulonimble, then run:
+Once you have acquired a copy of Cumulonimble, open the directory for Cumulonimble and run the following:
 ```sh
     make build
 ```
