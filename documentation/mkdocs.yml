@@ -1,0 +1,13 @@
+site_name: "Cumulonimble Documentation"
+theme: readthedocs
+pages:
+    - Home: index.md
+    - Information and Tutorials: tutorials.md
+    - Frequently Asked Questions: frequently_asked_questions.md
+    - Contributions and Feedback: contributions.md
+repo_url: "https://github.com/kosticlab/cumulonimble"
+site_description: 'Documentation and resources about cost-effective bidding on possibly-interruptible cloud computing resources across multiple providers'
+site_author: 'Evan Cofer'
+theme_dir: 'templates'
+google_analytics: ['UA-101979486-1', 'auto']
+strict: true
