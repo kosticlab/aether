@@ -20,3 +20,5 @@ To view the local documentation, open [http://127.0.0.1:8000](http://127.0.0.1:8
 ## Documentation Issues
 If you have any questions about documentation, or notice any gaps in documented information, you should file an [issue](https://github.com/kosticlab/cumulonimble/issues) on GitHub with the **question** label.
 However, make sure to read our [guide to contributions and issues](https://kosticlab.github.io/cumulonimble/contributions.html) and use our [issue template](https://github.com/kosticlab/cumulonimble/blob/master/ISSUE_TEMPLATE.md).
+
+---
