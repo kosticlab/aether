@@ -2,7 +2,7 @@
 
 ---
 
-## Prerequisites:
+## Prerequisites
 To follow along with this tutorial, you should have working knowledge of the unix command line.
 Additionally, you should be somewhat familiar with AWS.
 If you do not feel comfortable with using AWS, we recommend that you consider reading through [this tutorial](http://docs.aws.amazon.com/gettingstarted/latest/awsgsg-intro/gsg-aws-intro.html).

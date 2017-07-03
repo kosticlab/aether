@@ -22,6 +22,6 @@ test: build
 docs:
 	pip install mkdocs; \
 	cd documentation;\
-	mkdocs build; \
+	mkdocs build --clean; \
 	cd ..;
 	@echo 'To view documentation, go to the documentation directory, run "mkdocs serve", and then open "http://127.0.0.1:8000" in a web browser.'
