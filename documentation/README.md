@@ -1,5 +1,4 @@
 # Documentation
----
 
 The online documentation is available for Cumulonimble [here](https://kosticlab.github.io/cumulonimble).
 
