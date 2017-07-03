@@ -1,11 +1,11 @@
-site_name: "Cumulonimble Documentation"
+site_name: "Aether Documentation"
 theme: readthedocs
 pages:
     - Home: index.md
     - Information and Tutorials: tutorials.md
     - Frequently Asked Questions: frequently_asked_questions.md
     - Contributions and Feedback: contributions.md
-repo_url: "https://github.com/kosticlab/cumulonimble"
+repo_url: "https://github.com/kosticlab/aether"
 site_description: 'Documentation and resources about cost-effective bidding on possibly-interruptible cloud computing resources across multiple providers'
 site_author: 'Evan Cofer'
 theme_dir: 'templates'

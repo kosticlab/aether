@@ -10,7 +10,7 @@ An explanation for each of the sections is provided immediately below.
 - Specify whether your issue is about **documentation**, a **bug**, a **feature request**, or **other**.
 
 ### Release Version:
-- Ensure that you are using the most current distribution of Cumulonimble. You can update it by pulling the newest code from [GitHub](https://github.com/kosticlab/cumulonimble).
+- Ensure that you are using the most current distribution of Aether. You can update it by pulling the newest code from [GitHub](https://github.com/kosticlab/aether).
 - If the bug persists in newer releases, and you are not using the most up-to-date distribution, please provide a link to the release you used.
 - If you are using a development release version, please note that.
 - Make sure to include this information for any issue you file.
