@@ -1,10 +1,13 @@
 # Cumulonimble
 
 Cumulonimble is a method for efficiently bidding on spot instances of cloud computing resources.
+Through its optimizing instance bidding, Cumulonimble is able to reduce cloud computing costs by nearly 90 percent.
 By enabling users to distribute jobs across different cloud providers, Cumulonimble offers unprecedented flexibility.
-Documentation and guides for Cumulonimble may be found [here](https://kosticlab.github.io/cumulonimble).
-For a more in-depth discussion of Cumulonimble, look for our forthcoming publication.
-When it is available, a link to it will be added to this page.
+
+---
+
+## Installation
+Information on installation, along with an introductory tutorial, may be found [here](https://kosticlab.github.io/cumulonimble/tutorials.html).
 
 ---
 
@@ -14,7 +17,10 @@ If you would like to submit an issue or contribute code to Cumulonimble, first r
 
 ---
 
-## Installation
-Information on installation, along with an introductory tutorial, may be found [here](https://kosticlab.github.io/cumulonimble/tutorials.html).
+## Additional Information
+
+Documentation and guides for Cumulonimble may be found [here](https://kosticlab.github.io/cumulonimble).
+For a more in-depth discussion of Cumulonimble, look for our forthcoming publication.
+When it is available, a link to it will be added to this page.
 
 ---
