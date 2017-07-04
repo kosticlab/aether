@@ -1,0 +1,12 @@
+{
+  "ImageId": "IMAGE_VAL",
+  "KeyName": "KEY_VAL",
+  "SecurityGroupIds": [ "SG_VAL" ],
+  "InstanceType": "INSTANCE_TYPE",
+  "BlockDeviceMappings" : [
+       {
+               "DeviceName"  : "/dev/sdg",
+               "VirtualName" : "ephemeral0"
+      }
+  ]
+}

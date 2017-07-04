@@ -1,0 +1,6 @@
+{
+  "ImageId": "ami-3d95e52b",
+  "KeyName": "Kostic",
+  "SecurityGroupIds": [ "sg-f5ea3589" ],
+  "InstanceType": "c4.large"
+}

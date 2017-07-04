@@ -1,0 +1,12 @@
+{
+  "ImageId": "ami-80861296",
+  "KeyName": "kostictest",
+  "SecurityGroupIds": [ "sg-810580f0" ],
+  "InstanceType": "c4.large",
+  "BlockDeviceMappings" : [
+       {
+               "DeviceName"  : "/dev/sdg",
+               "VirtualName" : "ephemeral0"
+      }
+  ]
+}

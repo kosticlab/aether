@@ -11,3 +11,7 @@ site_author: 'Evan Cofer'
 theme_dir: 'templates'
 google_analytics: ['UA-101979486-1', 'auto']
 strict: true
+markdown_extensions:
+    - toc:
+        permalink: True
+        separator: "_"

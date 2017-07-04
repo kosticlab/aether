@@ -1,7 +1,7 @@
 # Aether
 
-Aether is a method for efficiently bidding on spot instances of cloud computing resources.
-Through its optimizing instance bidding, Aether is able to reduce cloud computing costs by nearly 90 percent.
+Aether is a lightweight and easy-to-use method for efficiently bidding on underutilized cloud computing resources.
+Through optimized instance bidding, Aether is able to reduce cloud computing costs by nearly ninety percent.
 By enabling users to distribute jobs across different cloud providers, Aether offers unprecedented flexibility.
 
 ---
@@ -24,3 +24,4 @@ For a more in-depth discussion of Aether, look for our forthcoming publication.
 When it is available, a link to it will be added to this page.
 
 ---
+
