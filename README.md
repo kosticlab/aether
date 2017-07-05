@@ -7,19 +7,19 @@ By enabling users to distribute jobs across different cloud providers, Aether of
 ---
 
 ## Installation
-Information on installation, along with an introductory tutorial, may be found [here](http://aether.kosticlab.org/aether/tutorials.html).
+Information on installation, along with an introductory tutorial, may be found [here](http://aether.kosticlab.org/tutorials).
 
 ---
 
 ## Issues and Contributions
 We use [GitHub issue tracking](http://github.com/kosticlab/aether/issues) for managing bugs and features requests.
-If you would like to submit an issue or contribute code to Aether, first read our [community guidelines](http://aether.kosticlab.org/aether/contributions.html) and [issue template](https://github.com/kosticlab/aether/blob/master/ISSUE_TEMPLATE.md).
+If you would like to submit an issue or contribute code to Aether, first read our [community guidelines](http://aether.kosticlab.org/contributions) and [issue template](https://github.com/kosticlab/aether/blob/master/ISSUE_TEMPLATE.md).
 
 ---
 
 ## Additional Information
 
-Documentation and guides for Aether may be found [here](http://aether.kosticlab.org/aether).
+Documentation and guides for Aether may be found [here](http://aether.kosticlab.org).
 For a more in-depth discussion of Aether, look for our forthcoming publication.
 When it is available, a link to it will be added to this page.
 
