@@ -10,6 +10,7 @@ temp/*
 docs/site/*
 docs/theme/*
 docs/sources/*
+aether.egg-info/*
 
 # Related to testing
 .coverage

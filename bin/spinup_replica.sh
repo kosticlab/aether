@@ -38,6 +38,6 @@ check_connection
 #simultaneous tasks, procs/task, mem frac/task, output loc, primaryIP
 #sudo chmod 400 Kostic.pem
 REG=$(cat region)
-ssh -i "$5".pem -o StrictHostKeyChecking=no ubuntu@$IP 'sudo apt-get update; sudo apt-get install awscli jq python --assume-yes; printf "'${8}'\n'${9}'\n'$REG'\n\n" | /usr/bin/aws configure;/usr/bin/aws s3 cp s3://'$5'/tempkey/'$5'.pem .;sudo chmod 400 '$5'.pem; git clone git@github.com:kosticlab/diabimmune.git;cd diabimmune;git checkout jacob;cd bin;sudo chmod +x *.sh;cd ..;./bin/replica_node_init.sh '$2' '$3' '$4' '$5' '$6' '$7' 2> error.log &'
+ssh -i "$5".pem -o StrictHostKeyChecking=no ubuntu@$IP 'sudo apt-get update; sudo apt-get install awscli jq python --assume-yes; printf "'${8}'\n'${9}'\n'$REG'\n\n" | /usr/bin/aws configure;/usr/bin/aws s3 cp s3://'$5'/tempkey/'$5'.pem .;sudo chmod 400 '$5'.pem; git clone git@github.com:kosticlab/aether.git;cd aether;cd bin;sudo chmod +x *.sh;cd ..;./bin/replica_node_init.sh '$2' '$3' '$4' '$5' '$6' '$7' 2> error.log &'
 
 

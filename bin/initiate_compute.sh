@@ -18,7 +18,7 @@ BUCKET="s3://"$5
 #upload binaries to s3.
 #This is a tab delimited file with the first column being the folder and all subsequent columns being paths within that folder corresponding to binaries to be executed
 aws s3 cp $9 $BUCKET/bin/ --recursive
-aws s3 cp ${11] $BUCKET/data/ --recursive
+aws s3 cp ${11} $BUCKET/data/ --recursive
 
 echo $5 > name.txt
 aws s3 cp name.txt $BUCKET/name/name.txt
@@ -88,5 +88,5 @@ check_connection()
 check_connection
 
 chmod 400 "$5".pem
-ssh -i "$5".pem -o StrictHostKeyChecking=no ubuntu@$IP 'sudo apt-get update; sudo apt-get install python awscli jq --assume-yes; printf "'${6}'\n'${7}'\n'${8}'\n\n" | /usr/bin/aws configure;/usr/bin/aws s3 cp s3://'$5'/tempkey/'$5'.pem .;sudo chmod 400 '$5'.pem; git clone git@github.com:kosticlab/diabimmune.git;cd diabimmune;git checkout jacob;cd bin;sudo chmod +x *.sh;cd ..;./bin/primary_node_init.sh '$1' '$2' '$3' '$4' '$5' '$6' '$7' '$9' '${10}' 2> error.log &'
+ssh -i "$5".pem -o StrictHostKeyChecking=no ubuntu@$IP 'sudo apt-get update; sudo apt-get install python awscli jq --assume-yes; printf "'${6}'\n'${7}'\n'${8}'\n\n" | /usr/bin/aws configure;/usr/bin/aws s3 cp s3://'$5'/tempkey/'$5'.pem .;sudo chmod 400 '$5'.pem; git clone git@github.com:kosticlab/aether.git;cd aether;cd bin;sudo chmod +x *.sh;cd ..;./bin/primary_node_init.sh '$1' '$2' '$3' '$4' '$5' '$6' '$7' '$9' '${10}' 2> error.log &'
 

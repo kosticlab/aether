@@ -14,9 +14,9 @@ import os
               ' of the distributed batch jobs.')
 @click.option('-L', '--provisioning-file', default='prov.psv', type=str, help='Filename of the' +
               ' provisioning file.')
-@click.option('-P', '--processors', default=-1, type=int, help='The number of cores' +
+@click.option('-P', '--processors', default=-1, type=str, help='The number of cores' +
               ' that each batch job requires')
-@click.option('-M','--memory', default=-1, type=int, help='The amount of memory, in ' +
+@click.option('-M','--memory', default=-1, type=str, help='The amount of memory, in ' +
               'Gigabytes, that each batch job will require.')
 @click.option('-N', '--name', default='', type=str, help='The name of the project.' +
               ' This should be unique, as an S3 bucket is created on Amazon for this' +
@@ -65,7 +65,7 @@ def cli(interactive, dry_run, input_file, provisioning_file, processors, memory,
                 need_arg('script')
             elif data == '':
                 need_arg('data')
-            os.system("/bin/initiate_compute.sh "+input_file+' '+provisioning_file+' '+processors+' '+memory+' '+name+' '+key_id+' '+key+' '+region+' '+bin_dir+' '+script+' '+data)
+            os.system("bin/initiate_compute.sh "+input_file+' '+provisioning_file+' '+processors+' '+memory+' '+name+' '+key_id+' '+key+' '+region+' '+bin_dir+' '+script+' '+data)
         except Exception as exc:
             print(exc.message, file=sys.stderr)
             sys.exit(1)

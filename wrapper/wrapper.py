@@ -4,7 +4,7 @@ import os
 ram_per_job,procs_per_job = go()
 directory = raw_input("Please provide an absolute path to a file wherein each line " +
                      "corresponds" +
-                     " to the directory of any data that the job script will need to access")
+                     " to the directory of any scripts/programs runnable on Ubuntu LTS + all dependencies that the job script will need to access")
 samples_file = raw_input("Please provide an absolute path to a file wherein each line " +
                      "corresponds" +
                      " to the argument for 1 job. Note that this line can be split with a" +
@@ -18,5 +18,10 @@ aws_ID = raw_input("Please enter your AWS CLI Key ID.")
 aws_key = raw_input("Please enter your AWS CLI Key.")
 region = raw_input("Please provide your preferred region (e.g. us-east-1).")
 script = raw_input("Please provide the script to be run on job inputs.")
-os.system("./bin/initiate_compute.sh "+samples_file+" prov.psv "+procs_per_job+' '+ram_per_job+' '+project_name+' '+aws_ID+' '+aws_key+' '+region+' '+directory+' '+script)
+data = raw_input("Please input absolute path to input data folder (leave blank if running example and is not needed).")
+if data == '':
+    data = script
+if directory == '':
+    directory == script
+os.system("./bin/initiate_compute.sh "+samples_file+" prov.psv "+str(procs_per_job)+' '+str(ram_per_job)+' '+project_name+' '+aws_ID+' '+aws_key+' '+region+' '+directory+' '+script+' '+data)
 
