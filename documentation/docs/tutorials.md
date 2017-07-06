@@ -401,7 +401,7 @@ the following 21 arguments in sequential order:
 
 Please note that it is a requirement that your hardware has a static IP address and is not being operated under any sort of scheduler.
 To add your own hardware to a currently executing Aether pipeline, run
-``bin/az.sh [args]`` where ``[args]`` are
+``bin/local.sh [args]`` where ``[args]`` are
 the following 9 arguments in sequential order:
 
 | Argument Number  | Information                                                                                            |
