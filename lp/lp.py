@@ -6,7 +6,7 @@ import sys
 import pickle
 import math
 import numpy
-from pandas import *
+#from pandas import *
 
 #this program will minimize cost per hour of distributed compute by utilizing Linear Programming to minimize cost/hour constrained by 1: minimum total cores desired at once, 2: minimum total RAM wanted at once, 3: minimum total free ephemeral storage desired, 4: AWS account limits, 5: variability in spot bidding price. Inherently, this considers both absolute cost of resources and risk of being outbid on the cheapest possible resources to optimize compute utilization.
 
