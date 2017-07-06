@@ -1,6 +1,6 @@
 # Documentation
 
-The online documentation is available for Aether [here](https://kosticlab.github.io/aether).
+The online documentation is available for Aether [here](http://aether.kosticlab.org).
 
 ---
 
