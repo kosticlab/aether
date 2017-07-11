@@ -72,7 +72,8 @@ def cli(interactive, dry_run, input_file, provisioning_file, processors, memory,
     #        elif data == '':
     #            need_arg('data')
     else:
-        os.system("python wrapper/wrapper.py")
+        dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])+'/'
+        os.system("python "+dirr+"wrapper/wrapper.py")
 
 if __name__ == "__main__":
     cli()

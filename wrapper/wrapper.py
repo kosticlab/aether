@@ -1,7 +1,10 @@
 from lp.lp import *
 import os
+import sys
 
 ram_per_job,procs_per_job = go()
+if ram_per_job == "exit":
+    sys.exit(0)
 directory = raw_input("Please provide an absolute path to a file wherein each line " +
                      "corresponds" +
                      " to the directory of any scripts/programs runnable on Ubuntu LTS + all dependencies that the job script will need to access")

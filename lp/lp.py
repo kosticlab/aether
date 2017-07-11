@@ -10,6 +10,9 @@ import numpy
 
 #this program will minimize cost per hour of distributed compute by utilizing Linear Programming to minimize cost/hour constrained by 1: minimum total cores desired at once, 2: minimum total RAM wanted at once, 3: minimum total free ephemeral storage desired, 4: AWS account limits, 5: variability in spot bidding price. Inherently, this considers both absolute cost of resources and risk of being outbid on the cheapest possible resources to optimize compute utilization.
 
+global dirr
+dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-1])+'/'
+
 class AWS_Instance:
     def __init__(self,procs,ram,eph,name,limit,running,running_spot,historical_max,current_spot,current_od):
         self.instance_type = name
@@ -46,7 +49,7 @@ def define_A_matrix():
     weeks_back = float(raw_input("How many weeks do you anticipate running your job for?"))
     start_time = int(current_time-(weeks_back*604800))
     eph = {}
-    eph_file = open("resources/ephemeral_store_info.csv",'r')
+    eph_file = open(dirr+"resources/ephemeral_store_info.csv",'r')
     for line in eph_file:
         q = line.rstrip().split(',')
         eph_value = int(q[3])
@@ -54,15 +57,15 @@ def define_A_matrix():
             eph[q[0]] = eph_value
     eph_file.close()
     retrievable_account_limits = set()
-    gl_limits_file = open("resources/gamelift_instances.txt",'r')
+    gl_limits_file = open(dirr+"resources/gamelift_instances.txt",'r')
     for line in gl_limits_file:
         retrievable_account_limits.add(line.rstrip())
     gl_limits_file.close()
-    aws_instance_file = open("resources/instances.csv",'r')
+    aws_instance_file = open(dirr+"resources/instances.csv",'r')
     aws_instances = []
     os.system("aws ec2 describe-instances > ec2_instances.json")
     os.system("aws ec2 describe-spot-instance-requests > ec2_spot_instances.json")
-    datacenters_fh = open("resources/datacenters.txt",'r')
+    datacenters_fh = open(dirr+"resources/datacenters.txt",'r')
     datacenters = []
     for lines in datacenters_fh:
         datacenters.append(lines.rstrip())
@@ -70,7 +73,7 @@ def define_A_matrix():
         print(str(i+1)+" "+datacenters[i])
     datacenter_idx = int(raw_input("Please enter the integer corresponding to the amazon datacenter in which you are in:"))
     datacenter = datacenters[datacenter_idx-1]
-    os.system("gunzip -c resources/odprices.gz > odprices")
+    os.system("gunzip -c "+dirr+"resources/odprices.gz > odprices")
     print("Please visit https://console.aws.amazon.com/ec2/v2/home?region=REGION#Limits: replacing REGION with the region in which you plan to run this scalable cluster in and provide the requested information that is not available in the API but critical for proper bidding when prompted.")
     idx = 0
     pickleq = raw_input("Would you like to use a pickle file?")
@@ -240,7 +243,7 @@ def find_provisioning_info(name,aws_instances):
 
 
 def write_prov_file(lp_output,names,aws_instances):
-    prov_file = open("prov.psv",'w')
+    prov_file = open(dirr+"prov.psv",'w')
     out_data = zip(names,lp_output.x)
     sum_deploy = 0
     for elem in out_data:
@@ -263,7 +266,7 @@ def go():
         return ram_per_job,procs_per_job
     except:
         print "No feasible solution found, try again with different parameters"
-
+        return "exit",0
 """
 if len(lp_output_n.x) > 0:
 	naive_out = zip(names_n,lp_output_n.x)
