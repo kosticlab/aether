@@ -1,2 +1,2 @@
 #!/bin/bash
-python aether/replica/job_termination.py $1 $2 $3
+python ${4}replica/job_termination.py $1 $2 $3

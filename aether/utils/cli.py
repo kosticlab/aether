@@ -65,7 +65,8 @@ def cli(interactive, dry_run, input_file, provisioning_file, processors, memory,
                 need_arg('script')
             elif data == '':
                 need_arg('data')
-            os.system("bin/initiate_compute.sh "+input_file+' '+provisioning_file+' '+processors+' '+memory+' '+name+' '+key_id+' '+key+' '+region+' '+bin_dir+' '+script+' '+data)
+            dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/      ')[:-2])+'/'
+            os.system(dirr+"bin/initiate_compute.sh "+input_file+' '+provisioning_file+' '+processors+' '+memory+' '+name+' '+key_id+' '+key+' '+region+' '+bin_dir+' '+script+' '+data)
         except Exception as exc:
             print(exc.message, file=sys.stderr)
             sys.exit(1)
