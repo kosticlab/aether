@@ -7,7 +7,7 @@ build:
 	conda install -y pip
 	conda install -y numpy
 	conda install -y scipy
-	conda install -y jq
+	conda install -c conda-forge jq=1.5
 	pip install --upgrade --user awscli
 	pip install -q azure-cli
 	conda install -y -c bioconda azure-cli
