@@ -5,6 +5,8 @@ import sys
 ram_per_job,procs_per_job = go()
 if ram_per_job == "exit":
     sys.exit(0)
+if sys.argv[1] == "True":
+    sys.exit(0)
 print("Please call interactive aether from within the directory it was downloaded from.")
 directory = raw_input("Please provide an absolute path that " +
                      "corresponds" +

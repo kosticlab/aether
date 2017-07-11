@@ -3,6 +3,7 @@ from __future__ import print_function
 import sys
 import click
 import os
+import lp.lp
 
 @click.command()
 @click.option('-I', '--interactive', is_flag=True, help='Enables interactive mode.')
@@ -66,6 +67,7 @@ def cli(interactive, dry_run, input_file, provisioning_file, processors, memory,
             elif data == '':
                 need_arg('data')
             dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])+'/'
+            os.chdir(dirr)
             os.system(dirr+"bin/initiate_compute.sh "+input_file+' '+provisioning_file+' '+processors+' '+memory+' '+name+' '+key_id+' '+key+' '+region+' '+bin_dir+' '+script+' '+data)
         except Exception as exc:
             print(exc.message, file=sys.stderr)
@@ -73,8 +75,9 @@ def cli(interactive, dry_run, input_file, provisioning_file, processors, memory,
     #        elif data == '':
     #            need_arg('data')
     else:
-        dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])+'/'
-        os.system("python "+dirr+"wrapper/wrapper.py")
+        dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])      +'/'
+        os.chdir(dirr)
+        os.system("python "+dirr+"wrapper/wrapper.py "+str(dry_run))
 
 if __name__ == "__main__":
     cli()

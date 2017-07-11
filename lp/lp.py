@@ -246,6 +246,7 @@ def write_prov_file(lp_output,names,aws_instances):
     prov_file = open(dirr+"prov.psv",'w')
     out_data = zip(names,lp_output.x)
     sum_deploy = 0
+    print("The follwoing is the LP generated provisioning:")
     for elem in out_data:
         pre_name = elem[0]
         procs,ram,storage,name = find_provisioning_info(pre_name,aws_instances)
@@ -253,6 +254,7 @@ def write_prov_file(lp_output,names,aws_instances):
         number_to_deploy = int(round(float(elem[1])))
         sum_deploy += number_to_deploy
         for count in range(0,number_to_deploy):
+            print(name+'|'+procs+'|'+ram+'|'+boolstr+"|aws\n")
             prov_file.write(name+'|'+procs+'|'+ram+'|'+boolstr+"|aws\n")
     prov_file.close()
     if sum_deploy == 0:
