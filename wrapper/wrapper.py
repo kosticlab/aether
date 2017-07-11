@@ -26,5 +26,6 @@ if data == '':
     data = script
 if directory == '':
     directory == script
-os.system("./bin/initiate_compute.sh "+samples_file+" prov.psv "+str(procs_per_job)+' '+str(ram_per_job)+' '+project_name+' '+aws_ID+' '+aws_key+' '+region+' '+directory+' '+script+' '+data)
+dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-1])+'/'
+os.system(dirr+"bin/initiate_compute.sh "+samples_file+" prov.psv "+str(procs_per_job)+' '+str(ram_per_job)+' '+project_name+' '+aws_ID+' '+aws_key+' '+region+' '+directory+' '+script+' '+data)
 
