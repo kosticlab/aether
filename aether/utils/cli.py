@@ -41,7 +41,7 @@ def cli(interactive, dry_run,ilp, input_file, provisioning_file, processors, mem
         key_id, key, region, bin_dir, script, data):
     '''The Aether Command Line Interface'''
     if ilp:
-        print("Ensure that you have run 'aws configure' prior to running ilp mode. Note that you only need to enter your account limits once; subsequent runs of aether are able to load this information in from file. Note the account limits retriever takes a long time to run for each query as it is retrieving a massive of pricing information from AWS APIs.")
+        print("Ensure that you have run 'aws configure' prior to running ilp mode. Note that you only need to enter your account limits once; subsequent runs of aether are able to load this information in from file. Note the account limits retriever takes a long time to run for each query as it is retrieving a massive of pricing information from AWS APIs. To utilize a pickle file, run Aether in the same directory and answer with the name of the file when prompted if you want to use a pickle file.")
         dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])      +'/'
         os.chdir(dirr)
         os.system("python "+dirr+"wrapper/wrapper_2.py ")
@@ -82,7 +82,7 @@ def cli(interactive, dry_run,ilp, input_file, provisioning_file, processors, mem
     #        elif data == '':
     #            need_arg('data')
     else:
-        print("Ensure that you have run 'aws configure' prior to running dry mode. Note that you only need to enter your account limits once; subsequent runs of aether are able to load this information in from file. Note the account limits retriever takes a long time to run for each query as it is retrieving a massive of pricing information from AWS APIs.")
+        print("Ensure that you have run 'aws configure' prior to running dry mode. Note that you only need to enter your account limits once; subsequent runs of aether are able to load this information in from file. Note the account limits retriever takes a long time to run for each query as it is retrieving a massive of pricing information from AWS APIs. To utilize a pickle file, run Aether in the same directory and answer with the name of the file when prompted if you want to use a pickle file.")
         dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])      +'/'
         os.chdir(dirr)
         os.system("python "+dirr+"wrapper/wrapper.py "+str(dry_run))

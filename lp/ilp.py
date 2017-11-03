@@ -142,8 +142,8 @@ def run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_t
     avoid_instances = set()
     rpj_helper = zip(names,procs)
     ppj_helper = zip(names,gbRAM)
-    a1 = filter(lambda x: x[1] > ram_per_job, rpj_helper)
-    a2 = filter(lambda x: x[1] > procs_per_job, ppj_helper)
+    a1 = filter(lambda x: x[1] < ram_per_job, rpj_helper)
+    a2 = filter(lambda x: x[1] < procs_per_job, ppj_helper)
     avoidp = a1+a2
     avoid_names = map(lambda x: x[0],avoidp)
     serversp = zip(names,max_cost_in_previous_time_window,[0]*num_types,account_limits)
@@ -151,21 +151,22 @@ def run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_t
     servers = filter(lambda x: x[0] not in avoid_names,serversp)
     server_characteristics = filter(lambda x: x[0] not in avoid_names,server_characteristicsp)
     job_parameters = []
-    job_parameters.append(("min_cores",min_cores,1e+20))
-    job_parameters.append(("min_ram",min_ram,1e+20))
-    job_parameters.append(("min_free_storage",min_free_storage,1e+20))
+    job_parameters.append(("min_cores",min_cores,min_cores*5))
+    job_parameters.append(("min_ram",min_ram,min_ram*5))
+    job_parameters.append(("min_free_storage",min_free_storage,min_free_storage*5))
     Server = namedtuple("Instance", ["name","cost","qmin","qmax"])
     Job_param = namedtuple("Param", ["name","qmin","qmax"])
     server = [Server(*s) for s in servers]
+    assert(len(server) > 0)
     params = [Job_param(*j) for j in job_parameters]
     server_info = {(sc[0], params[j].name): sc[1+j] for sc in server_characteristics for j in range(len(job_parameters))}
     mdl = Model(name='Instance Bidding')
     qty = {s: mdl.integer_var(lb=s.qmin,ub=s.qmax,name=s.name) for s in server}
     for p in params:
-        amount = mdl.sum(qty[s] * server_characteristics[s.name,p.name] for s in server)
+        amount = mdl.sum(qty[s] * server_info[s.name,p.name] for s in server)
         mdl.add_range(p.qmin,amount,p.qmax)
         mdl.add_kpi(amount, publish_name="Total %s" % p.name)
-    mdl.minimize(mdl.sum(qty[s] * s.unit_cost for s in server))
+    mdl.minimize(mdl.sum(qty[s] * s.cost for s in server))
     mdl.print_information()
     url = None
     key = None
@@ -178,6 +179,7 @@ def run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_t
         mdl.print_solution()
         mdl.report_kpis()
         mdl.export_as_lp("cplex.lp")
+        os.system("cat cplex.lp")
         # Save the CPLEX solution as "solution.json" program output
         with get_environment().get_output_stream("instances.json") as fp:
             mdl.solution.export(fp, "json")
@@ -193,8 +195,8 @@ def start_bidding():
 	aws_instances = define_A_matrix()
         if min_free_storage > 0:
             aws_instances = filter(lambda x: x.storage > 0, aws_instances)
-        aws_instances = filter(lambda x: x.procs > procs_per_job, aws_instances)
-        aws_instances = filter(lambda x: x.ram > ram_per_job, aws_instances)
+        #aws_instances = filter(lambda x: x.procs > procs_per_job, aws_instances)
+        #aws_instances = filter(lambda x: x.ram > ram_per_job, aws_instances)
 	num_types,old_names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits = formulate_problem(aws_instances)
 	run_LP(num_types,old_names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,aws_instances)
 	#lp,names = recursive_lp(lp_output,lp_output_n,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,old_names,aws_instances)
@@ -234,11 +236,12 @@ def write_prov_file(lp_output,names,aws_instances):
 
 
 def go1():
-    start_bidding()
-    return
-    #except:
-    #    print "No feasible solution found, try again with different parameters"
-    #    return "exit",0
+    try:
+        start_bidding()
+        return
+    except:
+        print "No feasible solution found, try again with different parameters"
+        return "exit",0
 """
 if len(lp_output_n.x) > 0:
 	naive_out = zip(names_n,lp_output_n.x)
