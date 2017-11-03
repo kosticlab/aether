@@ -270,12 +270,11 @@ def write_prov_file(lp_output,names,aws_instances):
     return
 
 def go():
-    try:
-        start_bidding()
-        return
-    except:
-        print "No feasible solution found, try again with different parameters"
-        return "exit",0
+    start_bidding()
+    return
+    #except:
+    #    print "No feasible solution found, try again with different parameters"
+    #    return "exit",0
 """
 if len(lp_output_n.x) > 0:
 	naive_out = zip(names_n,lp_output_n.x)
