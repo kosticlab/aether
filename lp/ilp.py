@@ -160,7 +160,7 @@ def run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_t
     qty = {s: mdl.integer_var(lb=s.qmin,ub=s.qmax,name=s.name) for s in server}
     for p in params:
         amount = mdl.sum(qty[s] * server_characteristics[s.name,p.name] for s in server)
-        mdl.add_range(p.qmin,amount,p.qmax)i
+        mdl.add_range(p.qmin,amount,p.qmax)
         mdl.add_kpi(amount, publish_name="Total %s" % p.name)
     mdl.print_information()
     url = None
