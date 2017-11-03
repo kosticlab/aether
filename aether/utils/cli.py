@@ -40,6 +40,10 @@ import lp.lp
 def cli(interactive, dry_run,ilp, input_file, provisioning_file, processors, memory, name,
         key_id, key, region, bin_dir, script, data):
     '''The Aether Command Line Interface'''
+    if ilp:
+        dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])      +'/'
+        os.chdir(dirr)
+        os.system("python "+dirr+"wrapper/cplex.py ")
     if not interactive:
         def need_arg(argname):
             raise Exception(("Missing or incorrect argument: \"%s\". " % argname) +
@@ -75,10 +79,6 @@ def cli(interactive, dry_run,ilp, input_file, provisioning_file, processors, mem
             sys.exit(1)
     #        elif data == '':
     #            need_arg('data')
-    elif ilp:
-        dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])      +'/'
-        os.chdir(dirr)
-        os.system("python "+dirr+"wrapper/cplex.py ")
     else:
         dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])      +'/'
         os.chdir(dirr)
