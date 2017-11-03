@@ -11,8 +11,8 @@ build:
 	pip install --upgrade --user awscli
 	pip install -q azure-cli
 	conda install -y -c bioconda azure-cli
-	conda install -c ibmdecisionoptimization cplex
-	conda install -c ibmdecisionoptimization docplex
+	conda install -y -c ibmdecisionoptimization cplex
+	conda install -y -c ibmdecisionoptimization docplex
 	make build-noconda
 
 build-noconda:
