@@ -134,8 +134,11 @@ def formulate_problem(aws_instances):
     num_types = len(procs_pre)
     return num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits
 
+def build_instance_model(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,aws_instances):
+    return
+
 #setting up LP problem formulation
-def run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,aws_instances):
+def run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,aws_instances,**kwargs):
     avoid_instances = set()
     rpj_helper = zip(names,procs)
     ppj_helper = zip(names,gbRAM)
@@ -162,6 +165,7 @@ def run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_t
         amount = mdl.sum(qty[s] * server_characteristics[s.name,p.name] for s in server)
         mdl.add_range(p.qmin,amount,p.qmax)
         mdl.add_kpi(amount, publish_name="Total %s" % p.name)
+    mdl.minimize(mdl.sum(qty[s] * s.unit_cost for s in server))
     mdl.print_information()
     url = None
     key = None
@@ -182,47 +186,6 @@ def run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_t
 
 
 #mdl.add_constraints((mdl.inside_vars[prod] + mdl.outsiddde_vars[prod] >= prod[1], 'ct_demand_%s' % prod[0]) for prod in products)
-
-
-def helper_recursive(input_item,names,instances):
-    print input_item.x
-    zipped_output = zip(names,input_item.x)
-    filtered_output = filter(lambda x: x[1] != 0, zipped_output)
-    remove_these_pre = map(lambda y: y[0], filter(lambda x: float(x[1]) < 1, filtered_output))
-    remove_these = map(lambda x: '.'.join(x.split('.')[:2]), remove_these_pre)
-    new_instances = filter(lambda x: x.instance_type not in remove_these,instances)
-    return new_instances
-
-
-def recursive_lp_n(lp_output,lp_output_n,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,old_names,aws_instances):
-    new_instances = helper_recursive(lp_output_n, old_names, aws_instances)
-    num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits = formulate_problem(new_instances)
-    new_lp_output, new_lp_output_n = run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,new_instances)
-    if type(new_lp_output_n.x)==float:
-        return lp_output_n,old_names
-    if len(new_lp_output_n.x) == 0:
-        return lp_output_n,old_names
-    if list(new_lp_output_n.x) == list(lp_output_n.x):
-        return lp_output_n,old_names
-    else:
-        new_return = recursive_lp_n(new_lp_output,new_lp_output_n,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,names,new_instances)
-        return new_return
-
-def recursive_lp(lp_output,lp_output_n,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,old_names,aws_instances):
-    new_instances = helper_recursive(lp_output, old_names, aws_instances)
-    num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits = formulate_problem(new_instances)
-    new_lp_output, new_lp_output_n = run_LP(num_types,names,prices,procs,gbRAM,freestorage,max_cost_in_previous_time_window,account_limits,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,new_instances)
-    if type(new_lp_output.x) == float:
-        return lp_output,old_names
-    elif len(new_lp_output.x) == 0:
-        return lp_output,old_names
-    elif list(new_lp_output.x) == list(lp_output.x):
-        return lp_output,old_names
-    else:
-        new_return = recursive_lp(new_lp_output,new_lp_output_n,min_cores,min_ram,min_free_storage,max_cost_hour,ram_per_job,procs_per_job,names,new_instances)
-        return new_return
-
-
 
 #add filtering for running instances and job size
 def start_bidding():
@@ -269,7 +232,8 @@ def write_prov_file(lp_output,names,aws_instances):
         sys.exit(1)
     return
 
-def go():
+
+def go1():
     start_bidding()
     return
     #except:
