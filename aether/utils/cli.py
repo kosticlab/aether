@@ -46,7 +46,7 @@ def cli(interactive, dry_run,ilp, input_file, provisioning_file, processors, mem
         os.chdir(dirr)
         os.system("python "+dirr+"wrapper/cplex.py ")
         sys.exit(1)
-    if not interactive:
+    elif not interactive:
         def need_arg(argname):
             raise Exception(("Missing or incorrect argument: \"%s\". " % argname) +
                             "Rerun with \"--help\" for assistance.")
