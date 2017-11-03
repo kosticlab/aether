@@ -37,7 +37,7 @@ import lp.lp
               ' every line in input-file and distributed across the cluster.')
 @click.option('-D', '--data', default='', type=str, help='The directory of any data' +
               ' that the job script will need to access.')
-def cli(interactive, dry_run, input_file, provisioning_file, processors, memory, name,
+def cli(interactive, dry_run,ilp, input_file, provisioning_file, processors, memory, name,
         key_id, key, region, bin_dir, script, data):
     '''The Aether Command Line Interface'''
     if not interactive:
