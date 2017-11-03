@@ -7,9 +7,10 @@ import lp.lp
 
 @click.command()
 @click.option('-I', '--interactive', is_flag=True, help='Enables interactive mode.')
-@click.option('--dry-run', is_flag=True, help='Runs Aether in dry-run mode. This shows' +
+@click.option('--dry_run', is_flag=True, help='Runs Aether in dry-run mode. This shows' +
               ' what cloud computing resources Aether would use, but does not actually' +
               ' use them or perform any computation.')
+@click.option('--ilp', is_flag=True, help='Runs the LP algorithm as a dry run with the CPLEX solver instead of the default solver')
 @click.option('-A', '--input-file', default='', type=str, help='The name of a text' +
               ' file, wherein each line corresponds to an argument passed to one' +
               ' of the distributed batch jobs.')
@@ -74,6 +75,10 @@ def cli(interactive, dry_run, input_file, provisioning_file, processors, memory,
             sys.exit(1)
     #        elif data == '':
     #            need_arg('data')
+    elif ilp:
+        dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])      +'/'
+        os.chdir(dirr)
+        os.system("python "+dirr+"wrapper/cplex.py ")
     else:
         dirr='/'.join(os.path.dirname(os.path.realpath(__file__)).split('/')[:-2])      +'/'
         os.chdir(dirr)
