@@ -25,3 +25,11 @@ When it is available, a link to it will be added to this page.
 
 ---
 
+## Citation
+
+If you use Aether, please cite our manuscript in OUP Bioinformatics: 
+
+Jacob M Luber, Braden T Tierney, Evan M Cofer, Chirag J Patel, Aleksandar D Kostic; Aether: Leveraging Linear Programming For Optimal Cloud Computing In Genomics, Bioinformatics, btx787, https://doi.org/10.1093/bioinformatics/btx787
+
+---
+
