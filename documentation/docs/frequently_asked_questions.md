@@ -3,24 +3,9 @@
 ---
 
 ## How should I cite Aether or the associated website/paper?
-If you use Aether or its associated resources, you should cite the paper:
+If you use Aether or its associated resources, you should cite the paper.
+Upon publication, we will add a BibTex citation for the paper to this page.
 
-Jacob M Luber, Braden T Tierney, Evan M Cofer, Chirag J Patel, Aleksandar D Kostic; Aether: Leveraging Linear Programming For Optimal Cloud Computing In Genomics, Bioinformatics, , btx787, [https://doi.org/10.1093/bioinformatics/btx787](https://doi.org/10.1093/bioinformatics/btx787)
-
-```TeX
-@article{doi:10.1093/bioinformatics/btx787,
-author = {Luber, Jacob M and Tierney, Braden T and Cofer, Evan M and Patel, Chirag J and Kostic, Aleksandar D},
-title = {Aether: Leveraging Linear Programming For Optimal Cloud Computing In Genomics},
-journal = {Bioinformatics},
-volume = {},
-number = {},
-pages = {btx787},
-year = {2017},
-doi = {10.1093/bioinformatics/btx787},
-URL = { + http://dx.doi.org/10.1093/bioinformatics/btx787},
-eprint = {/oup/backfile/content_public/journal/bioinformatics/pap/10.1093_bioinformatics_btx787/1/btx787.pdf}
-}
-```
 ---
 
 ## Will you add support for cloud provider X?
